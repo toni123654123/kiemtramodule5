@@ -1,0 +1,65 @@
+<div class="container mt-3 mb-5">
+  <h2 class="text-center">Book Manager</h2>
+  <div class="text-right mb-3">
+    <button type="button" class="btn btn-info"
+            (click)="openModal(template)">Create Book
+    </button>
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create Book</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="newUF" (ngSubmit)="create()">
+        <div class="modal-body">
+          <label for="title">Title</label>
+          <br>
+          <input formControlName="title" type="text" class="form-control" id="title" placeholder="Enter title"/>
+
+          <label for="author">Author</label>
+          <br>
+          <input formControlName="author" type="text" class="form-control" id="author" placeholder="Enter author"/>
+
+
+          <label for="description">Description</label>
+          <br>
+          <textarea formControlName="description" class="form-control" id="description" placeholder="Enter description"
+                    rows="6"></textarea>
+          <br>
+          <div align="center">
+            <button (click)="modalRef.hide()" type="submit" class="btn btn-outline-success">Create</button>
+          </div>
+
+        </div>
+
+      </form>
+    </ng-template>
+  </div>
+
+  <div *ngIf="!!success">{{ success }}</div>
+
+  <table class="table table-light">
+    <thead>
+    <tr>
+      <td>ID</td>
+      <td>Title</td>
+      <td>Author</td>
+      <td>Action</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of List">
+      <td>{{ book.id}}</td>
+      <td><a [routerLink]="'/detail/' + book.id">{{ book.title }}</a></td>
+      <td>{{ book.author }}</td>
+      <td>
+        <a [routerLink]="'/edit/' + book.id" class="btn btn-sm btn-outline-success">Edit</a>
+        <a [routerLink]="'/delete/' + book.id" class="btn btn-sm btn-outline-danger ml-3">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
