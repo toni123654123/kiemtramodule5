@@ -30,17 +30,17 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  // onSubmit(): void {
-  //   if (!this.form.invalid) {
-  //     let book: IBook = {
-  //       title: this.form.value.title,
-  //       author: this.form.value.author,
-  //       description: this.form.value.description,
-  //     };
-  //     this.bookService.save(book).toPromise().then(() => {
-  //       this.cache.set('success', 'Tạo mới thành công.');
-  //       this.router.navigate(['']);
-  //     });
-  //   }
-  // }
+  onSubmit(): void {
+    if (!this.form.invalid) {
+      let book: IBook = {
+        title: this.form.value.title,
+        author: this.form.value.author,
+        description: this.form.value.description,
+      };
+      this.bookService.save(book).toPromise().then(() => {
+        this.cache.set('success', 'Tạo mới thành công.');
+        this.router.navigate(['']);
+      });
+    }
+  }
 }
